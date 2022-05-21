@@ -2,6 +2,8 @@ package com.java_lab_corp;
 
 import java.util.HashMap;
 
+import com.java_lab_corp.exceptions.InvalidSquaresDimensionOfMap;
+
 /**
  * Map of Madre de Dios
  * @author francis
@@ -15,12 +17,21 @@ public class MapMD {
 	
 	private HashMap<Integer, String> map;
 	
-	public MapMD(int widthSquares, int heightSquares) {
+	public MapMD(int widthSquares, int heightSquares) throws Exception {
 		
 		this.map = new HashMap<Integer, String>();
 		
+		if(widthSquares < 0) {
+			throw new InvalidSquaresDimensionOfMap("[Error]: Expected widthSquares greather or equal to 0.");
+		}
+		
+		if(heightSquares < 0) {
+			throw new InvalidSquaresDimensionOfMap("[Error]: Expected heightSquares greather or equal to 0.");
+		}
+		
 		this.widthSquares = widthSquares;
 		this.heightSquares = heightSquares;
+		
 		int nbSquares = this.widthSquares * this.heightSquares;
 		int height = 1;
 		
