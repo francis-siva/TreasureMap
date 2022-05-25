@@ -15,11 +15,11 @@ public class MapMD {
 	
 	private int heightSquares;
 	
-	private HashMap<Integer, String> map;
+	private HashMap<Integer, Square> map;
 	
 	public MapMD(int widthSquares, int heightSquares) throws Exception {
 		
-		this.map = new HashMap<Integer, String>();
+		this.map = new HashMap<Integer, Square>();
 		
 		if(widthSquares < 0) {
 			throw new InvalidSquaresDimensionOfMap("[Error]: Expected widthSquares greather or equal to 0.");
@@ -33,21 +33,21 @@ public class MapMD {
 		this.heightSquares = heightSquares;
 		
 		int nbSquares = this.widthSquares * this.heightSquares;
-		int height = 1;
+		int width = 0, height = 0;
 		
 		for(int i = 0; i < nbSquares ; i++) {
-			this.map.put(i, "{ Square n° " + i + " in height " + height + "}");
-			
-			System.out.print("{ Square n° " + i + " in height [" + height + "]}");
+			this.map.put(i, new Square(i, width, height));
+
+			System.out.print("{ Square n° " + this.map.get(i).getSquareNumber() + " with width " + this.map.get(i).getHorizontalAxis() + " & height [" + this.map.get(i).getVerticalAxis() + "]}");
+			width++;
 			
 			if(this.map.size() % this.widthSquares == 0) {
 				System.out.println();
 				//System.out.println("\nsize(): " + this.map.size());
+				width=0;
 				++height;
 			}
-			
-			
-			//new Square(coordinatesPoint)
+
 		}
 
 	}
@@ -68,11 +68,11 @@ public class MapMD {
 		this.heightSquares = heightSquares;
 	}
 	
-	public HashMap<Integer, String> getMap() {
+	public HashMap<Integer, Square> getMap() {
 		return map;
 	}
 
-	public void setMap(HashMap<Integer, String> map) {
+	public void setMap(HashMap<Integer, Square> map) {
 		this.map = map;
 	}
 
