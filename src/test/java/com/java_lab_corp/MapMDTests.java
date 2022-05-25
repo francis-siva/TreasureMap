@@ -18,16 +18,13 @@ class MapMDTests {
 	@Test
 	void testWidthAndHeightSquaresNumberOfMapShouldBe0OrPositive() throws Exception {
 		MapMD mapMD = new MapMD(3, 4);
-
-		assertEquals(3, mapMD.getWidthSquares());
-		assertEquals(4, mapMD.getHeightSquares());
 		
-		assertAll(new Executable() {			
+		assertAll(new Executable() {
 			@Override
 			public void execute() throws Throwable {
 				assertEquals(3, mapMD.getWidthSquares());				
 			}
-		}, () -> assertEquals(3, mapMD.getWidthSquares()));
+		}, () -> assertEquals(4, mapMD.getHeightSquares()));
 			
 		
 		/* *** Exception Expected *** */
@@ -38,7 +35,7 @@ class MapMDTests {
 			}
 		}, "[Error]: Expected widthSquares greather or equal to 0.");
 		
-		Exception exception = assertThrows(InvalidSquaresDimensionOfMap.class, new Executable() {			
+		Exception exception = assertThrows(InvalidSquaresDimensionOfMap.class, new Executable() {
 			@Override
 			public void execute() throws Throwable {
 				MapMD mapMD3 = new MapMD(3, -4);				
