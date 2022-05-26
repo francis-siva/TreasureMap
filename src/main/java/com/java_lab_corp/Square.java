@@ -21,4 +21,10 @@ public class Square extends CoordinatesPoint {
 //	public void setVerticalAxis(int verticalAxis) {
 //		this.verticalAxis = verticalAxis;
 //	}
+
+	@Override
+	public String toString() {
+		return "Square [squareNumber=" + squareNumber + ", horizontalAxis=" + horizontalAxis + ", verticalAxis="
+				+ verticalAxis + "]";
+	}
 }
