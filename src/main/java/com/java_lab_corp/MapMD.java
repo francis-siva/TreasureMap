@@ -3,48 +3,53 @@ package com.java_lab_corp;
 import java.util.HashMap;
 
 import com.java_lab_corp.exceptions.InvalidSquaresDimensionOfMap;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Map of Madre de Dios
  * @author francis
  *
  */
+@Slf4j
 public class MapMD {
-	
+
+	@Getter
 	private int widthSquares;
-	
+
+	@Getter
 	private int heightSquares;
-	
+
+	@Getter @Setter
 	private HashMap<Integer, Square> map;
 	
 	public MapMD(int widthSquares, int heightSquares) throws Exception {
 		
-		this.map = new HashMap<Integer, Square>();
+		this.map = new HashMap<>();
 		
-		if(widthSquares < 0) {
-			throw new InvalidSquaresDimensionOfMap("[Error]: Expected widthSquares greather or equal to 0.");
-		}
-		
-		if(heightSquares < 0) {
-			throw new InvalidSquaresDimensionOfMap("[Error]: Expected heightSquares greather or equal to 0.");
-		}
-		
+		checkMapWidthSquares(widthSquares);
+		checkMapHeightSquares(heightSquares);
+
+		log.info("Madre De Dios Map Initialization:");
 		this.widthSquares = widthSquares;
 		this.heightSquares = heightSquares;
-		
+
+		// nbSquares to create in Map
 		int nbSquares = this.widthSquares * this.heightSquares;
 		int width = 0, height = 0;
-		
+
 		for(int i = 0; i < nbSquares ; i++) {
 			this.map.put(i, new Square(i, width, height));
 
-			System.out.print("{ Square n° " + this.map.get(i).getSquareNumber() + " with width " + this.map.get(i).getHorizontalAxis() + " & height [" + this.map.get(i).getVerticalAxis() + "]}");
+			log.debug("{ Square n° " + this.map.get(i).getSquareNumber() + " with width " + this.map.get(i).getHorizontalAxis() + " & height [" + this.map.get(i).getVerticalAxis() + "]}");
 			width++;
 			
 			if(this.map.size() % this.widthSquares == 0) {
-				System.out.println();
-				//System.out.println("\nsize(): " + this.map.size());
-				width=0;
+				log.debug("last Square n°{} at line {}. => [_Line_Break_]", this.map.get(i).getSquareNumber(), height);
+				log.debug("map_size: {}\n", this.map.size());
+
+				width = 0;
 				++height;
 			}
 
@@ -52,28 +57,32 @@ public class MapMD {
 
 	}
 
-	public int getWidthSquares() {
-		return widthSquares;
-	}
-
 	public void setWidthSquares(int widthSquares) {
+		checkMapWidthSquares(widthSquares);
 		this.widthSquares = widthSquares;
 	}
 
-	public int getHeightSquares() {
-		return heightSquares;
-	}
-
 	public void setHeightSquares(int heightSquares) {
+		checkMapHeightSquares(heightSquares);
 		this.heightSquares = heightSquares;
 	}
-	
-	public HashMap<Integer, Square> getMap() {
-		return map;
+
+	private void checkMapWidthSquares(int widthSquares) {
+		log.debug("Checking Map Width of squares value: {}", widthSquares);
+
+		if (widthSquares < 0) {
+			log.error("Map Width of squares is under 0.");
+			throw new InvalidSquaresDimensionOfMap("[Error]: Expected widthSquares greather or equal to 0.");
+		}
 	}
 
-	public void setMap(HashMap<Integer, Square> map) {
-		this.map = map;
+	private void checkMapHeightSquares(int heightSquares) {
+		log.debug("Checking Map Height of squares value: {}", heightSquares);
+
+		if (heightSquares < 0) {
+			log.error("Map Height of squares is under 0.");
+			throw new InvalidSquaresDimensionOfMap("[Error]: Expected heightSquares greather or equal to 0.");
+		}
 	}
 
 	public int getTotalSquares() {
