@@ -37,24 +37,32 @@ public class MapMD {
 
 		// nbSquares to create in Map
 		int nbSquares = this.widthSquares * this.heightSquares;
-		int width = 0, height = 0;
 
-		for(int i = 0; i < nbSquares ; i++) {
-			this.map.put(i, new Square(i, width, height));
+		// Create Square(s) to put on map only if nbSquares > 0
+		if(nbSquares > 0) {
+			int width = 0, height = 0;
 
-			log.debug("{ Square n° " + this.map.get(i).getSquareNumber() + " with width " + this.map.get(i).getHorizontalAxis() + " & height [" + this.map.get(i).getVerticalAxis() + "]}");
-			width++;
-			
-			if(this.map.size() % this.widthSquares == 0) {
-				log.debug("last Square n°{} at line {}. => [_Line_Break_]", this.map.get(i).getSquareNumber(), height);
-				log.debug("map_size: {}\n", this.map.size());
+			for (int i = 0; i < nbSquares; i++) {
+				this.map.put(i, new Square(i, width, height));
 
-				width = 0;
-				++height;
+				log.debug("{ Square n° " + this.map.get(i).getSquareNumber() + " with width " + this.map.get(i).getHorizontalAxis() + " & height [" + this.map.get(i).getVerticalAxis() + "]}");
+				width++;
+
+				if (this.map.size() % this.widthSquares == 0) {
+					log.debug("last Square n°{} at line {}. => [_Line_Break_]", this.map.get(i).getSquareNumber(), height);
+					log.debug("map_size: {}\n", this.map.size());
+
+					width = 0;
+					++height;
+				}
+
 			}
-
 		}
 
+		if (this.getTotalSquares() > 0) {
+			log.debug("Total Squares created on map: {}", this.getTotalSquares());
+		}
+		else { log.debug("No any Square built on map"); }
 	}
 
 	public void setWidthSquares(int widthSquares) {
