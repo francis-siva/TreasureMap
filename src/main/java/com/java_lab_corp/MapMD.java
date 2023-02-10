@@ -49,7 +49,7 @@ public class MapMD {
 				width++;
 
 				if (this.map.size() % this.widthSquares == 0) {
-					log.debug("last Square n°{} at line {}. => [_Line_Break_]", this.map.get(i).getSquareNumber(), height);
+					log.debug("last Square n°{} at line {}. => [_Line_Break_]", this.map.get(i).getSquareNumber(), (height + 1));
 					log.debug("map_size: {}\n", this.map.size());
 
 					width = 0;

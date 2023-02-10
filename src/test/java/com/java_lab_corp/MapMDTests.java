@@ -2,11 +2,13 @@ package com.java_lab_corp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import com.java_lab_corp.exceptions.InvalidSquaresDimensionOfMap;
 
+@Slf4j
 class MapMDTests {
 
 	@Test
@@ -25,8 +27,15 @@ class MapMDTests {
 				assertEquals(3, mapMD.getWidthSquares());				
 			}
 		}, () -> assertEquals(4, mapMD.getHeightSquares()));
-			
-		
+
+		/* *** Specific Test case *** */
+		log.debug("\n=>MapMD creation test with a WidthSquares to 0:<=");
+		MapMD mapMDEmpty = new MapMD(0, 4);
+
+		assertAll(() -> assertEquals(0, mapMDEmpty.getTotalSquares()),
+				() -> assertEquals(0, mapMDEmpty.getWidthSquares()),
+				() -> assertEquals(4, mapMDEmpty.getHeightSquares()));
+
 		/* *** Exception Expected *** */
 		assertThrows(InvalidSquaresDimensionOfMap.class, new Executable() {			
 			@Override
