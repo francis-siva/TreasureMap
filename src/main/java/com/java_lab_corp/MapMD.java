@@ -1,6 +1,7 @@
 package com.java_lab_corp;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 import com.java_lab_corp.exceptions.InvalidSquaresDimensionOfMap;
 import lombok.Getter;
@@ -91,6 +92,35 @@ public class MapMD {
 			log.error("Map Height of squares is under 0.");
 			throw new InvalidSquaresDimensionOfMap("[Error]: Expected heightSquares greather or equal to 0.");
 		}
+	}
+
+	/**
+	 * Identify heights' middleline(s) of created Map with Squares based on {@code heightSquares} property
+	 * @return the middle height(s) line(s)
+	 */
+	public HashSet<Integer> getMapMiddleHeightLine() {
+		HashSet<Integer> mapMiddleHeightLine = new HashSet<>();
+
+		if(this.getHeightSquares() > 0) {
+			//Even MapMD HeightSquares management
+			if (this.getHeightSquares() % 2 == 0) {
+				log.debug("Even HeightSquares management");
+
+				mapMiddleHeightLine.add((this.getHeightSquares() / 2));
+				mapMiddleHeightLine.add((this.getHeightSquares() / 2 + 1));
+				log.debug("Middle HeightLines of Map: {}", mapMiddleHeightLine);
+			}
+
+			//Odd MapMD HeightSquares management
+			if (this.getHeightSquares() % 2 != 0) {
+				log.debug("Odd HeightSquares management");
+
+				mapMiddleHeightLine.add((this.getHeightSquares() / 2 + 1));
+				log.debug("Middle HeightLine of Map: {}", mapMiddleHeightLine);
+			}
+		}
+
+		return mapMiddleHeightLine;
 	}
 
 	public int getTotalSquares() {
