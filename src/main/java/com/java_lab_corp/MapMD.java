@@ -1,5 +1,6 @@
 package com.java_lab_corp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -51,6 +52,7 @@ public class MapMD {
 
 				if (this.map.size() % this.widthSquares == 0) {
 					log.debug("last Square n°{} at line {}. => [_Line_Break_]", this.map.get(i).getSquareNumber(), (height + 1));
+					// Squares number stored in map
 					log.debug("map_size: {}\n", this.map.size());
 
 					width = 0;
@@ -98,8 +100,8 @@ public class MapMD {
 	 * Identify heights' middleline(s) of created Map with Squares based on {@code heightSquares} property
 	 * @return the middle height(s) line(s)
 	 */
-	public HashSet<Integer> getMapMiddleHeightLine() {
-		HashSet<Integer> mapMiddleHeightLine = new HashSet<>();
+	public ArrayList<Integer> getMapMiddleHeightLine() {
+		ArrayList<Integer> mapMiddleHeightLine = new ArrayList<>();
 
 		if(this.getHeightSquares() > 0) {
 			//Even MapMD HeightSquares management
