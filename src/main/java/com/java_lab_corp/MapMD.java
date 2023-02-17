@@ -125,6 +125,38 @@ public class MapMD {
 		return mapMiddleHeightLine;
 	}
 
+	/**
+	 * Get last index value of mapMiddleHeightLine
+	 * @return last index value
+	 */
+	public int getLastMapMiddleHeightLineIndex() {
+		// To evaluate MapMiddleHeightLine mapMD shoud be > 0
+		if (checkMapMiddleHeightLineSizeGreaterThan0()) {
+			return this.getMapMiddleHeightLine().get(this.getMapMiddleHeightLine().size() - 1);
+		}
+		return 0;
+	}
+
+	/**
+	 * Total Squares from Square 0 (on the north) to the last Square of MiddleHeight Line
+	 * @return number of squares until  the last square of MapMiddleHeightLine
+	 */
+	public int getNbSquaresFromNorthToMiddleLine(){
+		if (checkMapMiddleHeightLineSizeGreaterThan0()) {
+			return this.getWidthSquares() * this.getLastMapMiddleHeightLineIndex();
+		}
+		return 0;
+	}
+
+	/**
+	 * Utility method to check if MapMiddleHeightLine's size is > 0.
+	 * It's required to evaluate lastIndex value of MapMiddleHeightLine
+	 * @return true if verified else false
+	 */
+	public boolean checkMapMiddleHeightLineSizeGreaterThan0 () {
+		return (this.getMapMiddleHeightLine().size() > 0);
+	}
+
 	public int getTotalSquares() {
 		return this.getMap().size();
 	}
