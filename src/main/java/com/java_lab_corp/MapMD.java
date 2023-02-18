@@ -130,7 +130,7 @@ public class MapMD {
 	 * @return last index value
 	 */
 	public int getLastMapMiddleHeightLineIndex() {
-		// To evaluate MapMiddleHeightLine mapMD shoud be > 0
+		// To evaluate MapMiddleHeightLine mapMD should be > 0
 		if (checkMapMiddleHeightLineSizeGreaterThan0()) {
 			return this.getMapMiddleHeightLine().get(this.getMapMiddleHeightLine().size() - 1);
 		}
