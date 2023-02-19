@@ -66,9 +66,32 @@ class SquareTests {
 	}
 
 	@Test
-	@Disabled("Treat this test case once previous one will be done")
-	void testEstSquareNumberGreaterThanWestSquareNumberInSameHeight() throws Exception {
+	void testEastSquareNumberGreaterThanWestSquareNumberInSameHeight() throws Exception {
+		MapMD mapMD = new MapMD(5, 3);
+		Square mapLastSquare = mapMD.getMap().get(mapMD.getMap().size() - 1);
+		log.debug("mapLastSquare's coordinates (Horizon, Vertical) : {}", mapLastSquare);
 
-		fail("Not yet implemented");
+		mapMD.getMap().values()
+				.stream().filter(square -> square.getHorizontalAxis() == 0)
+				.forEach(sqrHorizon0 -> {
+					log.debug("Test sqrHorizon0 width is lower than last Square number of map for: " + sqrHorizon0);
+
+					assertTrue(sqrHorizon0.getSquareNumber() < mapLastSquare.getSquareNumber());
+				});
+
+
+		Random rand = new Random();
+		log.debug("getWidthSquares: " + mapMD.getWidthSquares());
+
+		/* *** Evaluate HorizontalAxis value between Random West Square & East Square *** */
+
+		mapMD.getMap().values()
+				.stream() //mapMD.getWidthSquares() will return the last square from East, to avoid it we set getWidthSquares() to -1
+				.filter(square -> square.getHorizontalAxis() <= rand.nextInt(mapMD.getWidthSquares()-1))
+				.forEach(westSqr -> {
+					log.debug("Test Random West Square Width if it's less than last Square number of map for: " + westSqr);
+
+					assertTrue(westSqr.getSquareNumber() < mapLastSquare.getSquareNumber());
+				});
 	}
 }
