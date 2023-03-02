@@ -3,14 +3,17 @@ package com.java_lab_corp;
 import com.java_lab_corp.components.Mountain;
 import com.java_lab_corp.components.Treasure;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 
 @Slf4j
+@NoArgsConstructor
 public class Square extends CoordinatesPoint {
-	@Getter
-	private final int squareNumber;
+	@Getter @Setter
+	private int squareNumber;
 
 	@Getter
 	private ArrayList<Object> listComponents;
@@ -39,17 +42,14 @@ public class Square extends CoordinatesPoint {
 //		if(obj instanceof Adventurer)
 		}
 	}
-	/*public int getSquareNumber() {
-		return squareNumber;
-	}*/
-//	
-//	public void setHorizontalAxis(int horizontalAxis) {
-//		this.horizontalAxis = horizontalAxis;
-//	}
-//	
-//	public void setVerticalAxis(int verticalAxis) {
-//		this.verticalAxis = verticalAxis;
-//	}
+
+	public void setHorizontalAxis(int horizontalAxis) {
+		this.horizontalAxis = horizontalAxis;
+	}
+
+	public void setVerticalAxis(int verticalAxis) {
+		this.verticalAxis = verticalAxis;
+	}
 
 	@Override
 	public String toString() {
