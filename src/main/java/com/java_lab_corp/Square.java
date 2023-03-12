@@ -26,16 +26,28 @@ public class Square extends CoordinatesPoint {
 	}
 
 	public void addComponent(Object obj) {
-		//If listComponents 1st element is a Mountain, so we don't build more Component
+		log.debug("param obj received: {}", obj);
+
+		if(this.listComponents == null) {
+			this.listComponents = new ArrayList<>();
+			log.debug("ArrayList instance created to supply listComponents");
+		}
+
+		//If listComponents 1st element is a Mountain, so we don't build Component anymore
 		if(this.listComponents.size() > 0 && this.listComponents.get(0) instanceof Mountain) {
 			log.error("A Mountain is here !!! Unable to place another Component at this Square {}", this);
 			//todo: impl & throw custom exception
 		}
 		else {
+			log.debug("New Object to add in listComponents: {}", obj.getClass().getSimpleName());
+
 			if(obj instanceof Mountain) {
 				Mountain mountain = (Mountain) obj;
+
 				this.listComponents.add(mountain);
+				log.debug("Mountain {} is registered to Square in: {}", mountain, this);
 			}
+
 			if(obj instanceof Treasure) {
 
 			}

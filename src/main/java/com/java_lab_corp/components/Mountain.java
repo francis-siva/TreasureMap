@@ -32,6 +32,7 @@ public class Mountain {
                 this.square = squareToReach.get();
                 log.debug("Square found. Mountain is attached to {}", this.square);
 
+                // Once component is created attach to its square
                 this.square.addComponent(this);
             }
             else {
