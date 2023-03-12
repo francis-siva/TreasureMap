@@ -3,6 +3,7 @@ package com.java_lab_corp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Optional;
 
 import com.java_lab_corp.exceptions.InvalidSquaresDimensionOfMap;
 import lombok.Getter;
@@ -160,5 +161,26 @@ public class MapMD {
 	public int getTotalSquares() {
 		return this.getMap().size();
 	}
-	
+
+	/**
+	 * Search if a given {@code Square} is present in defined {@code MapMD}
+	 * @param inputSquare {@code Square}
+	 * @return square to reach if found in an {@code Optional<Square>}
+	 */
+	public Optional<Square> searchSquare(Square inputSquare) {
+
+		// inputSquare argument store in optionalSquare to handle null value
+		Optional<Square> optionalSquare = Optional.ofNullable(inputSquare);
+		log.debug("Value of Optional optionalSquare : {}", optionalSquare);
+
+		/* If the following statement is true (so inputSquare is a non-null value),
+		then we can search if there is a matching Square on map with inputSquare */
+		if(optionalSquare.isPresent()) {
+			return map.values().stream()
+				.filter(square -> square.getHorizontalAxis() == inputSquare.getHorizontalAxis() && square.getVerticalAxis() == inputSquare.getVerticalAxis())
+				.findFirst();
+		}
+
+		return optionalSquare;
+	}
 }
