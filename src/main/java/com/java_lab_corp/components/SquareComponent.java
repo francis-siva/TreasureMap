@@ -25,7 +25,7 @@ public abstract class SquareComponent {
     public SquareComponent(Square square, MapMD mapMD) throws InvalidComponentBuild {
 
         String componentClassType = this.getClass().getSimpleName();
-        log.debug("component_CLASS TYPE: " + componentClassType);
+        log.debug("component_CLASS_Type: " + componentClassType);
 
         if(mapMD.getTotalSquares() > 0) {
             this.mapMD = mapMD;
