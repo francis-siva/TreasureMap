@@ -49,7 +49,10 @@ public class Square extends CoordinatesPoint {
 			}
 
 			if(obj instanceof Treasure) {
+				Treasure treasure = (Treasure) obj;
 
+				this.listComponents.add(treasure);
+				log.debug("Treasure {} is registered to Square in: {}", treasure, this);
 			}
 //		if(obj instanceof Adventurer)
 		}
